@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+
+\title{LaTeX Document with Multi-line Comments}
+\author{Test Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This document contains multi-line comments using the comment package.
+
+\begin{comment}
+This is a multi-line comment that should be completely removed.
+It can span multiple lines and contain any kind of text.
+Including LaTeX commands like \textbf{bold text} and $math$.
+This entire block should disappear.
+\end{comment}
+
+The above comment block should be completely removed from the output.
+
+\section{Mixed Content}
+
+Here's some regular content.
+\begin{comment}
+Another multi-line comment block.
+This one also contains:
+- Lists
+- Mathematical expressions: $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+- LaTeX commands: \emph{emphasized text}
+\end{comment}
+
+And here's more regular content after the comment.
+
+\subsection{Nested Environments}
+\begin{comment}
+This comment contains nested environments:
+\begin{itemize}
+    \item First item
+    \item Second item with $x^2 + y^2 = z^2$
+\end{itemize}
+\end{comment}
+\section{Conclusion}
+
+End of the document with multi-line comments.
+
+\end{document}
