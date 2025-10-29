@@ -43,6 +43,18 @@ describe("removeComments", () => {
     expect(removeComments(input)).toBe(expected);
   });
 
+  it("インラインコメントを正しく削除する", () => {
+    const input = fs.readFileSync(
+      path.join(inputDir, "inline-comment.tex"),
+      "utf-8",
+    );
+    const expected = fs.readFileSync(
+      path.join(expectedDir, "inline-comment.tex"),
+      "utf-8",
+    );
+    expect(removeComments(input)).toBe(expected);
+  });
+
   it("コメントがない場合はそのまま返す", () => {
     const input = fs.readFileSync(
       path.join(inputDir, "no-comments.tex"),
