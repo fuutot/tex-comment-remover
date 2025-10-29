@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+\usepackage{amsmath}
+
+% ドキュメントクラスのコメント
+\title{Mixed Comments Document}
+\author{Test Author}
+% 日付のコメント
+\date{\today}
+
+\begin{document}
+
+% タイトルページ
+\maketitle
+
+% 序文セクション
+\section{Introduction}
+
+This document contains both single-line and multi-line comments.
+
+\begin{comment}
+This is a multi-line comment in the introduction.
+It should be completely removed along with all the
+single-line comments marked with % symbols.
+\end{comment}
+
+% 上記のコメントブロックの後のコメント
+The text above and below should remain.
+
+% メインコンテンツセクション
+\section{Main Content}
+
+% このセクションでは数式を扱います
+Here are some mathematical expressions:
+
+\begin{comment}
+The following equation is very important:
+$E = mc^2$
+But this comment and the equation inside should be removed.
+\end{comment}
+
+% 実際の数式
+\begin{equation}
+    F = ma
+\end{equation}
+
+% サブセクションのコメント
+\subsection{Subsection with Comments}
+
+\begin{comment}
+This subsection contains various elements:
+- Lists
+- Equations
+- Text formatting
+
+All of this should be removed.
+\end{comment}
+
+% このテキストは残る
+This text should remain visible.
+
+% 最終セクション
+\section{Conclusion}
+
+\begin{comment}
+Final thoughts and conclusions would go here,
+but this comment block should be removed entirely.
+\end{comment}
+
+% 文書の終了コメント
+This is the end of our test document.
+
+\end{document}

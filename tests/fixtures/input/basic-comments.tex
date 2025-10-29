@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+% これは文書クラスに関するコメントです
+\title{LaTeX Document with Comments}
+% 著者情報のコメント
+\author{Test Author}
+\date{\today}
+
+\begin{document}
+
+% タイトルページの生成
+\maketitle
+
+% 序文のセクション
+\section{Introduction}
+
+This is a sample LaTeX document to test comment removal functionality.
+% この行はコメントなので削除されるべきです
+
+The purpose of this document is to ensure that our comment removal algorithm works correctly with real LaTeX content.
+
+% サブセクションのコメント
+\subsection{Purpose}
+
+% ここは数式のセクションです
+\section{Mathematical Expressions}
+
+Here's a simple equation:
+% インライン数式の例
+$E = mc^2$
+
+And here's a display equation:
+% ディスプレイ数式
+\begin{equation}
+    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+\end{equation}
+
+% 最後のセクション
+\section{Conclusion}
+
+This concludes our test document.
+% 文書の終了
+
+\end{document}
