@@ -47,6 +47,7 @@ export default function Home() {
 
       {/* ボタン */}
       <button
+        type="button" // 送信ボタンとしての動作を防止
         onClick={handleRemoveComments}
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
       >
