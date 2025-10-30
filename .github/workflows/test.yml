@@ -8,5 +8,9 @@ jobs:
     steps:
       - name: "Echo Hello World"
         run: echo "Hello, World!"
-      - name: "Change Directory"
-        run: cd /no_exist_dir
+
+  echo_introduction:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Echo Introduction"
+        run: echo "My name is Tanaka."
