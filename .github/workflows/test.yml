@@ -1,16 +1,41 @@
-name: GitHub Actions Demo
+name: Pull Request Check
 
-on: [push]
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-  echo_hello_world:
+  build:
+    name: Build Project
     runs-on: ubuntu-latest
     steps:
-      - name: "Echo Hello World"
-        run: echo "Hello, World!"
+      - name: "Checkout Code"
+        uses: actions/checkout@v5
 
-  echo_introduction:
+      - name: "Set up Node.js"
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: "Install Dependencies"
+        run: npm install
+
+      - name: "Build Project"
+        run: npm run build
+
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: "Echo Introduction"
-        run: echo "My name is Tanaka."
+      - name: "Checkout Code"
+        uses: actions/checkout@v5
+
+      - name: "Set up Node.js"
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: "Install Dependencies"
+        run: npm install
+
+      - name: "Run Tests"
+        run: npm run test
