@@ -7,3 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello world!!"
+      - run: echo "This is a demo of GitHub Actions workflow."
