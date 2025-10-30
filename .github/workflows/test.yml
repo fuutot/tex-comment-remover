@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Echo Hello World"
-        run: |
-          echo "Hello, World!"
-          echo "This is a demo of GitHub Actions."
-          cd /no_exist_dir
+        run: echo "Hello, World!"
+      - name: "Change Directory"
+        run: cd /no_exist_dir
