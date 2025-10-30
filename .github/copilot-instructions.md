@@ -1,4 +1,3 @@
-
 # Copilot Instructions for tex-comment-remover (Web)
 
 ## このドキュメントについて
@@ -28,6 +27,7 @@
 - **スタイリング**: Tailwind CSS
 - **リンター/フォーマッター**: ESLint + Prettier
 - **型チェック**: TypeScript strict mode
+- **テスト**: Jest + Testing Library
 
 ## コーディング規約・ベストプラクティス
 
