@@ -30,6 +30,15 @@ export default function Home() {
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputText(e.target.value);
+
+    // アラートが表示されたままを防ぐため、入力変更時にアラートをクリア
+    if (alert) {
+      setAlert(null);
+    }
+  };
+
   const handleButtonClick = () => {
     handleRemoveComments();
     handleCopyToClipboard();
@@ -48,7 +57,7 @@ export default function Home() {
             id="input"
             className="p-2 border rounded-md h-96"
             value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
+            onChange={handleInputChange}
             placeholder="TeX形式の入力をここに貼り付けてください"
           />
         </div>
