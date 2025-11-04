@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { removeComments } from "@/utils/removeComments";
+import Alert, { AlertProps } from "@/components/Alert";
 
 export default function Home() {
+  const [alert, setAlert] = useState<AlertProps | null>(null);
+
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
 
@@ -15,9 +18,15 @@ export default function Home() {
   const handleCopyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(outputText);
-      alert("出力テキストがクリップボードにコピーされました！");
+      setAlert({
+        message: "出力テキストがクリップボードにコピーされました！",
+        type: "success",
+      });
     } catch (_) {
-      alert("クリップボードへのコピーに失敗しました。");
+      setAlert({
+        message: "クリップボードへのコピーに失敗しました。",
+        type: "error",
+      });
     }
   };
 
@@ -58,6 +67,9 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* アラート */}
+      {alert && <Alert message={alert.message} type={alert.type} />}
 
       {/* ボタン */}
       <button
