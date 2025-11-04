@@ -2,14 +2,46 @@
 
 import { useState } from "react";
 import { removeComments } from "@/utils/removeComments";
+import Alert, { AlertProps } from "@/components/Alert";
 
 export default function Home() {
+  const [alert, setAlert] = useState<AlertProps | null>(null);
+
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
 
   const handleRemoveComments = () => {
     const result = removeComments(inputText);
     setOutputText(result);
+  };
+
+  const handleCopyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(outputText);
+      setAlert({
+        message: "出力テキストがクリップボードにコピーされました！",
+        type: "success",
+      });
+    } catch (_) {
+      setAlert({
+        message: "クリップボードへのコピーに失敗しました。",
+        type: "error",
+      });
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputText(e.target.value);
+
+    // アラートが表示されたままを防ぐため、入力変更時にアラートをクリア
+    if (alert) {
+      setAlert(null);
+    }
+  };
+
+  const handleButtonClick = () => {
+    handleRemoveComments();
+    handleCopyToClipboard();
   };
 
   return (
@@ -25,7 +57,7 @@ export default function Home() {
             id="input"
             className="p-2 border rounded-md h-96"
             value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
+            onChange={handleInputChange}
             placeholder="TeX形式の入力をここに貼り付けてください"
           />
         </div>
@@ -45,13 +77,16 @@ export default function Home() {
         </div>
       </div>
 
+      {/* アラート */}
+      {alert && <Alert message={alert.message} type={alert.type} />}
+
       {/* ボタン */}
       <button
         type="button" // 送信ボタンとしての動作を防止
-        onClick={handleRemoveComments}
+        onClick={handleButtonClick}
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
       >
-        コメント削除
+        コメント削除 & コピー
       </button>
     </div>
   );
