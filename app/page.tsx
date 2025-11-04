@@ -12,6 +12,20 @@ export default function Home() {
     setOutputText(result);
   };
 
+  const handleCopyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(outputText);
+      alert("出力テキストがクリップボードにコピーされました！");
+    } catch (_) {
+      alert("クリップボードへのコピーに失敗しました。");
+    }
+  };
+
+  const handleButtonClick = () => {
+    handleRemoveComments();
+    handleCopyToClipboard();
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">TeX コメント削除ツール</h1>
@@ -48,10 +62,10 @@ export default function Home() {
       {/* ボタン */}
       <button
         type="button" // 送信ボタンとしての動作を防止
-        onClick={handleRemoveComments}
+        onClick={handleButtonClick}
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
       >
-        コメント削除
+        コメント削除 & コピー
       </button>
     </div>
   );
