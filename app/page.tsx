@@ -10,26 +10,6 @@ export default function Home() {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
 
-  const handleRemoveComments = () => {
-    const result = removeComments(inputText);
-    setOutputText(result);
-  };
-
-  const handleCopyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(outputText);
-      setAlert({
-        message: "出力テキストがクリップボードにコピーされました！",
-        type: "success",
-      });
-    } catch (_) {
-      setAlert({
-        message: "クリップボードへのコピーに失敗しました。",
-        type: "error",
-      });
-    }
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(e.target.value);
 
@@ -39,9 +19,22 @@ export default function Home() {
     }
   };
 
-  const handleButtonClick = () => {
-    handleRemoveComments();
-    handleCopyToClipboard();
+  const handleButtonClick = async () => {
+    const result = removeComments(inputText);
+    setOutputText(result);
+
+    try {
+      await navigator.clipboard.writeText(result); // setStateは非同期に動作するため、outputTextではなくresultを使用
+      setAlert({
+        message: "クリップボードにコピーしました！",
+        type: "success",
+      });
+    } catch {
+      setAlert({
+        message: "クリップボードへのコピーに失敗しました。",
+        type: "error",
+      });
+    }
   };
 
   return (
